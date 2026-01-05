@@ -1,9 +1,10 @@
 {
-  "name": "ruby3_rails8_flowbite_render",
+  "name": "ruby4_rails8_flowbite_render",
   "private": true,
+  "type": "module",
   "version": "1.0.0",
   "engines": {
-    "node": ">= 22.0",
+    "node": ">= 24.0",
     "pnpm": "^10.15.0"
   },
   "packageManager": "pnpm@10.15.0",

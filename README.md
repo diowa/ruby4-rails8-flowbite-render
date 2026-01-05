@@ -1,13 +1,13 @@
 # Rails 8 Starter App
-[![Build Status](https://github.com/diowa/ruby3-rails8-flowbite-render/actions/workflows/ci.yml/badge.svg)](https://github.com/diowa/ruby3-rails8-flowbite-render/actions)
-[![Code Climate](https://codeclimate.com/github/diowa/ruby3-rails8-flowbite-render/badges/gpa.svg)](https://codeclimate.com/github/diowa/ruby3-rails8-flowbite-render)
-[![Coverage Status](https://coveralls.io/repos/github/diowa/ruby3-rails8-flowbite-render/badge.svg?branch=main)](https://coveralls.io/github/diowa/ruby3-rails8-flowbite-render?branch=main)
+[![Build Status](https://github.com/diowa/ruby4-rails8-flowbite-render/actions/workflows/ci.yml/badge.svg)](https://github.com/diowa/ruby4-rails8-flowbite-render/actions)
+[![Code Climate](https://codeclimate.com/github/diowa/ruby4-rails8-flowbite-render/badges/gpa.svg)](https://codeclimate.com/github/diowa/ruby4-rails8-flowbite-render)
+[![Coverage Status](https://coveralls.io/repos/github/diowa/ruby4-rails8-flowbite-render/badge.svg?branch=main)](https://coveralls.io/github/diowa/ruby4-rails8-flowbite-render?branch=main)
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
 
 This is an opinionated starter web application based on the following technology stack:
 
-* [Ruby 3.4.8][:ruby-url]
+* [Ruby 4.0.0][:ruby-url]
 * [Rails 8.1.1][:ruby-on-rails-url]
 * [Tailwind CSS 4.1.18][:tailwind-css-url]
 * [Flowbite 3.1.2][:flowbite-url]
@@ -34,6 +34,6 @@ This is an opinionated starter web application based on the following technology
 [:stylelint-url]: https://stylelint.io
 [:tailwind-css-url]: https://tailwindcss.com/
 
-Starter App is deployable on [Render](https://render.com/). Demo: https://ruby3-rails8-flowbite-render-app.onrender.com/
+Starter App is deployable on [Render](https://render.com/). Demo: https://ruby4-rails8-flowbite-render-app.onrender.com/
 
 ```Gemfile``` also contains a set of useful gems for performance, security, api building...
