@@ -1,7 +1,7 @@
 ---
 en:
   app_name: Rails 8 Starter App
-  meta_description: An opinionated starter application based on Ruby 3.4, Rails 8.1, Tailwind CSS, and Flowbite
+  meta_description: An opinionated starter application based on Ruby 4.0, Rails 8.1, Tailwind CSS, and Flowbite
   pages:
     hello_world:
       title: Hello World

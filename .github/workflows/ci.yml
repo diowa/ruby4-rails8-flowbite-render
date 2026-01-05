@@ -20,7 +20,7 @@ jobs:
       cancel-in-progress: true
 
     env:
-      DATABASE_URL: postgres://postgres:postgres@localhost/ruby3_rails8_flowbite_render_development
+      DATABASE_URL: postgres://postgres:postgres@localhost/ruby4_rails8_flowbite_render_development
       RAILS_ENV: test
 
     services:

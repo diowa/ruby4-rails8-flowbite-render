@@ -1,9 +1,9 @@
 databases:
-  - name: ruby3-rails8-flowbite-render-db
+  - name: ruby4-rails8-flowbite-render-db
     plan: free
 
 services:
-  - name: ruby3-rails8-flowbite-render-app
+  - name: ruby4-rails8-flowbite-render-app
     plan: free
     type: web
     runtime: ruby
@@ -15,13 +15,13 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: ruby3-rails8-flowbite-render-db
+          name: ruby4-rails8-flowbite-render-db
           property: connectionString
       # Render may add a suffix to the database name
       # Ref: https://render.com/docs/blueprint-spec#example-blueprint-file
       - key: DATABASE_NAME
         fromDatabase:
-          name: ruby3-rails8-flowbite-render-db
+          name: ruby4-rails8-flowbite-render-db
           property: database
       - key: RAILS_ENV
         value: production
