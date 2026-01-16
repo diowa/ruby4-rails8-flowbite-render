@@ -10,10 +10,10 @@
   "packageManager": "pnpm@10.15.0",
   "devDependencies": {
     "@babel/eslint-parser": "^7.28.6",
-    "@stylistic/stylelint-plugin": "^4.0.1",
+    "@stylistic/stylelint-plugin": "^5.0.0",
     "eslint": "^9.39.2",
     "neostandard": "^0.12.2",
-    "stylelint": "^16.26.1",
+    "stylelint": "^17.0.0",
     "stylelint-order": "^7.0.1"
   },
   "browserslist": [
