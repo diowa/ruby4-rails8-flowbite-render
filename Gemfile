@@ -33,7 +33,6 @@ group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'readline' # TODO: Remove when deivid-rodriguez/pry-byebug#460 will be fixed
   gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'rubocop-capybara', require: false
