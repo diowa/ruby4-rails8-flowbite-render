@@ -13,7 +13,7 @@
     "@stylistic/stylelint-plugin": "^5.0.1",
     "eslint": "^9.39.2",
     "neostandard": "^0.12.2",
-    "stylelint": "^17.0.0",
+    "stylelint": "^17.1.0",
     "stylelint-order": "^7.0.1"
   },
   "browserslist": [
