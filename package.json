@@ -12,7 +12,7 @@
     "@babel/eslint-parser": "^7.28.6",
     "@stylistic/stylelint-plugin": "^5.0.1",
     "eslint": "^9.39.2",
-    "neostandard": "^0.12.2",
+    "neostandard": "^0.13.0",
     "stylelint": "^17.4.0",
     "stylelint-order": "^7.0.1"
   },
