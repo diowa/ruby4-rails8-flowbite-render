@@ -14,7 +14,7 @@
     "eslint": "^9.39.2",
     "neostandard": "^0.13.0",
     "stylelint": "^17.4.0",
-    "stylelint-order": "^7.0.1"
+    "stylelint-order": "^8.0.0"
   },
   "browserslist": [
     "chrome >= 111",
