@@ -11,9 +11,9 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.28.6",
     "@stylistic/stylelint-plugin": "^5.0.1",
-    "eslint": "^9.39.2",
+    "eslint": "^9.39.4",
     "neostandard": "^0.13.0",
-    "stylelint": "^17.4.0",
+    "stylelint": "^17.5.0",
     "stylelint-order": "^8.1.1"
   },
   "browserslist": [
