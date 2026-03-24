@@ -85,7 +85,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v6
         with:
-          node-version: '22'
+          node-version-file: '.node-version'
           cache: 'pnpm'
       - name: Scan for security vulnerabilities in JavaScript dependencies
         run: pnpm audit
