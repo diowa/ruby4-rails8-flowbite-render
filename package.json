@@ -10,7 +10,7 @@
   "packageManager": "pnpm@10.15.0",
   "devDependencies": {
     "@babel/eslint-parser": "^7.28.6",
-    "@stylistic/stylelint-plugin": "^5.0.1",
+    "@stylistic/stylelint-plugin": "^5.1.0",
     "eslint": "^9.39.4",
     "neostandard": "^0.13.0",
     "stylelint": "^17.6.0",
