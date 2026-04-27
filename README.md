@@ -7,7 +7,7 @@
 
 This is an opinionated starter web application based on the following technology stack:
 
-* [Ruby 4.0.2][:ruby-url]
+* [Ruby 4.0.3][:ruby-url]
 * [Rails 8.1.3][:ruby-on-rails-url]
 * [Tailwind CSS 4.2.1][:tailwind-css-url]
 * [Flowbite 3.1.2][:flowbite-url]
