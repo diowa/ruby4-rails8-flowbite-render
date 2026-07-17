@@ -71,13 +71,13 @@ jobs:
       if: steps.changed-files.outputs.any_changed == 'true'
       run: bundle exec i18n-tasks health
 
-  eslint:
-    name: ESLint
+  oxlint:
+    name: Oxlint
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
     concurrency:
-      group: "${{ github.workflow }} / eslint @ ${{ github.ref }}"
+      group: "${{ github.workflow }} / oxlint @ ${{ github.ref }}"
       cancel-in-progress: true
 
     steps:
@@ -86,8 +86,7 @@ jobs:
       id: changed-files
       with:
         files: |
-          .eslintignore
-          .eslintrc.cjs
+          .oxlintrc.json
           .github/workflows/lint.yml
           app/**/*.js
     - uses: pnpm/action-setup@v6.0.9
@@ -99,9 +98,9 @@ jobs:
         cache: 'pnpm'
     - name: Install node dependencies
       run: pnpm install
-    - name: Run ESLint
+    - name: Run Oxlint
       if: steps.changed-files.outputs.any_changed == 'true'
-      run: pnpm eslint app/**/*.js
+      run: pnpm lint
 
   stylelint:
     name: Stylelint
