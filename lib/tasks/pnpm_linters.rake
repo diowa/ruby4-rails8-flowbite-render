@@ -26,14 +26,14 @@ namespace :pnpm do
     Rake::Task['pnpm:run'].execute(command: cmd)
   end
 
-  desc 'Run `pnpm eslint`'
-  task :eslint do
+  desc 'Run `pnpm lint` (oxlint)'
+  task :lint do
     extra_args = ARGV[2..]&.join(' ')
-    cmd = ['eslint', 'app/**/*.js', extra_args].compact.join(' ')
+    cmd = ['lint', extra_args].compact.join(' ')
     Rake::Task['pnpm:run'].execute(command: cmd)
   end
   # rubocop:enable Rails/RakeEnvironment
 end
 
 task(:lint).sources.push 'pnpm:stylelint'
-task(:lint).sources.push 'pnpm:eslint'
+task(:lint).sources.push 'pnpm:lint'

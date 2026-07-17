@@ -76,7 +76,7 @@ bundle exec rake lint
 This command runs:
 - RuboCop (Ruby style and quality)
 - i18n-tasks (translation validation)
-- eslint via pnpm (JavaScript linting)
+- oxlint via pnpm (JavaScript linting)
 - stylelint via pnpm (CSS/SCSS linting)
 
 Run the test suite:
@@ -186,7 +186,7 @@ Use descriptive branch prefixes to categorize work:
 
 **Tooling Configuration**:
 - `.rubocop.yml` - RuboCop linting rules
-- `eslint.config.mjs` - JavaScript linting
+- `.oxlintrc.json` - JavaScript linting
 - `.stylelintrc` - CSS/SCSS linting
 
 ## Common Commands Reference

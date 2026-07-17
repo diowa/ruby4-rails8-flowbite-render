@@ -8,11 +8,12 @@
     "pnpm": "^10.15.0"
   },
   "packageManager": "pnpm@10.15.0",
+  "scripts": {
+    "lint": "oxlint app/**/*.js"
+  },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.29.7",
     "@stylistic/stylelint-plugin": "^5.2.1",
-    "eslint": "^9.39.4",
-    "neostandard": "^0.13.0",
+    "oxlint": "^1.74.0",
     "stylelint": "^17.14.0",
     "stylelint-order": "^8.1.1"
   },
