@@ -14,7 +14,7 @@
   "devDependencies": {
     "@stylistic/stylelint-plugin": "^5.2.1",
     "oxlint": "^1.74.0",
-    "stylelint": "^17.14.0",
+    "stylelint": "^17.14.1",
     "stylelint-order": "^8.1.1"
   },
   "browserslist": [
