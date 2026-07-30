@@ -104,7 +104,7 @@ GEM
     childprocess (5.1.0)
       logger (~> 1.5)
     coderay (1.1.3)
-    concurrent-ruby (1.3.7)
+    concurrent-ruby (1.3.8)
     connection_pool (3.0.2)
     crack (1.0.1)
       bigdecimal
@@ -119,7 +119,7 @@ GEM
       htmlentities (~> 4.3)
       launchy (>= 2.1, < 4.0)
       mail (~> 2.7)
-    erb (6.0.5)
+    erb (6.0.6)
     erubi (1.13.1)
     et-orbi (1.4.0)
       tzinfo
@@ -389,7 +389,7 @@ GEM
     shoulda-matchers (8.0.1)
       activesupport (>= 7.2)
     simplecov (1.0.2)
-    solid_cable (4.0.1)
+    solid_cable (4.0.2)
       actioncable (>= 7.2)
       activejob (>= 7.2)
       activerecord (>= 7.2)
