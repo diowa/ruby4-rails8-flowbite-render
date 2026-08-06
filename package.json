@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@stylistic/stylelint-plugin": "^5.2.1",
-    "oxlint": "^1.75.0",
+    "oxlint": "^1.76.0",
     "stylelint": "^17.14.1",
     "stylelint-order": "^8.1.1"
   },
