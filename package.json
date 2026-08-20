@@ -12,7 +12,7 @@
     "lint": "oxlint app/**/*.js"
   },
   "devDependencies": {
-    "@stylistic/stylelint-plugin": "^5.2.1",
+    "@stylistic/stylelint-plugin": "^5.3.0",
     "oxlint": "^1.78.0",
     "stylelint": "^17.14.1",
     "stylelint-order": "^8.1.1"
