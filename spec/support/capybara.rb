@@ -23,6 +23,7 @@ Capybara.register_driver :custom_chrome do |app|
     'BackForwardCache',
     'MediaRouter',
     'OptimizationHints',
+    'DeferRendererTasksAfterInput', # teamcapybara/capybara#2800
     'ProcessPerSiteUpToMainFrameThreshold', # crbug.com/1492053
   ]
 
