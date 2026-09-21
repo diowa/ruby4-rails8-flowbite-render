@@ -9,7 +9,7 @@
   },
   "packageManager": "pnpm@10.15.0",
   "scripts": {
-    "lint": "oxlint app/**/*.js"
+    "lint": "oxlint app/javascript"
   },
   "devDependencies": {
     "@stylistic/stylelint-plugin": "^5.3.0",
