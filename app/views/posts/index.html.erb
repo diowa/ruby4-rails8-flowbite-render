@@ -1,0 +1,16 @@
+<% content_for :title, "Posts" %>
+
+<h1>Posts</h1>
+
+<section aria-label="Posts">
+  <% @posts.each do |post| %>
+    <article data-post-slug="<%= post.slug %>">
+      <h2><%= link_to post.title, post_path(post.slug), data: { post_title: true } %></h2>
+      <ul aria-label="Tags">
+        <% post.tags.each do |post_tag| %>
+          <li data-post-tag><%= post_tag %></li>
+        <% end %>
+      </ul>
+    </article>
+  <% end %>
+</section>
