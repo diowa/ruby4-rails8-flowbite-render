@@ -113,6 +113,7 @@ RSpec.describe 'Page theme', :js do
         expect(page).to have_css('#main-navbar', visible: :visible)
         menu.click
         expect(menu['aria-expanded']).to eq('false')
+        expect(page).to have_no_css('#main-navbar', visible: :visible)
         menu.click
       else
         expect(page).to have_link('Hello World', visible: :visible)
@@ -122,6 +123,10 @@ RSpec.describe 'Page theme', :js do
       expect(page).to have_current_path(hello_world_path)
       expect(page.evaluate_script('window.navigationMarker')).to be(true)
       expect_theme('light', saved: 'light')
+      if layout == :mobile
+        expect(find('button[aria-controls="main-navbar"]')['aria-expanded']).to eq('false')
+        expect(page).to have_no_css('#main-navbar', visible: :visible)
+      end
       find('[data-theme-toggle]').click
       expect_theme('dark', saved: 'dark')
       emulate_os_theme('light')
@@ -133,6 +138,7 @@ RSpec.describe 'Page theme', :js do
       expect_theme('dark', saved: 'dark')
       expect_colors('dark')
       if layout == :mobile
+        expect(find('button[aria-controls="main-navbar"]')['aria-expanded']).to eq('false')
         expect(page).to have_no_css('#main-navbar', visible: :visible)
         find('button[aria-controls="main-navbar"]').click
         expect(page).to have_css('#main-navbar', visible: :visible)
@@ -143,10 +149,15 @@ RSpec.describe 'Page theme', :js do
       expect(page).to have_current_path(root_path)
       expect(page.evaluate_script('window.navigationMarker')).to be(true)
       expect_theme('dark', saved: 'dark')
+      if layout == :mobile
+        expect(find('button[aria-controls="main-navbar"]')['aria-expanded']).to eq('true')
+        expect(page).to have_css('#main-navbar', visible: :visible)
+      end
 
       page.refresh
       expect(page.evaluate_script('window.navigationMarker')).to be_nil
       expect_theme('dark', saved: 'dark')
+      emulate_os_theme('dark')
       find('[data-theme-toggle]').click
       expect_theme('light', saved: 'light')
       expect_colors('light')
@@ -159,9 +170,17 @@ RSpec.describe 'Page theme', :js do
       click_link 'Hello World'
       expect(page).to have_current_path(hello_world_path)
       expect_theme('light', saved: 'light')
+      if layout == :mobile
+        expect(find('button[aria-controls="main-navbar"]')['aria-expanded']).to eq('false')
+        expect(page).to have_no_css('#main-navbar', visible: :visible)
+      end
       page.go_back
       expect(page).to have_current_path(root_path)
       expect_theme('light', saved: 'light')
+      if layout == :mobile
+        expect(find('button[aria-controls="main-navbar"]')['aria-expanded']).to eq('true')
+        expect(page).to have_css('#main-navbar', visible: :visible)
+      end
     end
   end
 end
