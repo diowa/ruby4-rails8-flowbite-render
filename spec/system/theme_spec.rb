@@ -3,12 +3,17 @@
 require 'rails_helper'
 
 RSpec.describe 'Page theme', :js do
+  let(:script_ids) { [] }
+
   before do
     visit root_path
     page.execute_script("localStorage.removeItem('theme')")
   end
 
   after do
+    script_ids.each do |identifier|
+      page.driver.browser.execute_cdp('Page.removeScriptToEvaluateOnNewDocument', identifier: identifier)
+    end
     page.driver.browser.execute_cdp('Emulation.setEmulatedMedia', features: [])
     page.driver.browser.execute_cdp('Emulation.clearDeviceMetricsOverride')
   end
@@ -52,13 +57,12 @@ RSpec.describe 'Page theme', :js do
     end
   end
 
-  %w[dark light no-preference].each do |os_theme|
+  %w[dark light].each do |os_theme|
     # rubocop:disable-next RSpec/ExampleLength
     it "follows #{os_theme} OS preference until a manual selection" do
-      # Chromium treats no preference as light for the dark media query.
-      emulate_os_theme(os_theme == 'no-preference' ? 'light' : os_theme)
+      emulate_os_theme(os_theme)
       visit root_path
-      expected = os_theme == 'dark' ? 'dark' : 'light'
+      expected = os_theme
       expect_theme(expected)
       expect_colors(expected)
 
@@ -70,23 +74,46 @@ RSpec.describe 'Page theme', :js do
   end
 
   # rubocop:disable-next RSpec/ExampleLength, RSpec/MultipleExpectations
+  it 'uses light with no OS preference, then follows a live OS change without saving a choice' do
+    emulate_os_theme('light')
+    # Chromium only emulates dark and light; hide its light query to expose neither preference to the page.
+    script_ids << page.driver.browser.execute_cdp('Page.addScriptToEvaluateOnNewDocument', source: <<~JS).fetch('identifier')
+      const nativeMatchMedia = window.matchMedia.bind(window)
+      window.matchMedia = (query) => query === '(prefers-color-scheme: light)' ? { matches: false } : nativeMatchMedia(query)
+    JS
+    visit root_path
+    expect(page.evaluate_script("matchMedia('(prefers-color-scheme: dark)').matches")).to be(false)
+    expect(page.evaluate_script("matchMedia('(prefers-color-scheme: light)').matches")).to be(false)
+    expect_theme('light')
+    expect_colors('light')
+
+    emulate_os_theme('dark')
+    expect_theme('dark')
+    expect_colors('dark')
+  end
+
+  # rubocop:disable-next RSpec/ExampleLength, RSpec/MultipleExpectations
   it 'switches by pointer, Enter and Space, retaining explicit choices against OS changes' do
     emulate_os_theme('light')
     visit root_path
     button = find('[data-theme-toggle]')
+    page.execute_script('window.navigationMarker = true')
     button.click
+    expect(page.evaluate_script('window.navigationMarker')).to be(true)
     expect_theme('dark', saved: 'dark')
     expect_colors('dark')
     emulate_os_theme('light')
     expect_theme('dark', saved: 'dark')
 
     button.send_keys(:enter)
+    expect(page.evaluate_script('window.navigationMarker')).to be(true)
     expect_theme('light', saved: 'light')
     expect_colors('light')
     emulate_os_theme('dark')
     expect_theme('light', saved: 'light')
 
     button.send_keys(:space)
+    expect(page.evaluate_script('window.navigationMarker')).to be(true)
     expect_theme('dark', saved: 'dark')
     expect(page.evaluate_script("document.activeElement.matches('[data-theme-toggle]')")).to be(true)
     expect(color('[data-theme-toggle]', 'outline-style')).not_to eq('none')
@@ -127,6 +154,20 @@ RSpec.describe 'Page theme', :js do
         expect(find('button[aria-controls="main-navbar"]')['aria-expanded']).to eq('false')
         expect(page).to have_no_css('#main-navbar', visible: :visible)
       end
+      click_link t('app_name')
+      expect(page).to have_current_path(root_path)
+      expect(page.evaluate_script('window.navigationMarker')).to be(true)
+      expect_theme('light', saved: 'light')
+      expect_colors('light')
+      if layout == :mobile
+        expect(find('button[aria-controls="main-navbar"]')['aria-expanded']).to eq('false')
+        find('button[aria-controls="main-navbar"]').click
+        expect(page).to have_css('#main-navbar', visible: :visible)
+      end
+      click_link 'Hello World'
+      expect(page).to have_current_path(hello_world_path)
+      expect(page.evaluate_script('window.navigationMarker')).to be(true)
+      expect_theme('light', saved: 'light')
       find('[data-theme-toggle]').click
       expect_theme('dark', saved: 'dark')
       emulate_os_theme('light')
@@ -153,6 +194,12 @@ RSpec.describe 'Page theme', :js do
         expect(find('button[aria-controls="main-navbar"]')['aria-expanded']).to eq('true')
         expect(page).to have_css('#main-navbar', visible: :visible)
       end
+      find('[data-theme-toggle]').click
+      expect(page.evaluate_script('window.navigationMarker')).to be(true)
+      expect_theme('light', saved: 'light')
+      find('[data-theme-toggle]').click
+      expect(page.evaluate_script('window.navigationMarker')).to be(true)
+      expect_theme('dark', saved: 'dark')
 
       page.refresh
       expect(page.evaluate_script('window.navigationMarker')).to be_nil
@@ -165,6 +212,7 @@ RSpec.describe 'Page theme', :js do
       expect_theme('light', saved: 'light')
       expect_colors('light')
       expect(page.evaluate_script('document.documentElement.scrollWidth <= window.innerWidth')).to be(true)
+      page.execute_script('window.navigationMarker = true')
 
       find('button[aria-controls="main-navbar"]').click if layout == :mobile
       click_link 'Hello World'
@@ -176,11 +224,18 @@ RSpec.describe 'Page theme', :js do
       end
       page.go_back
       expect(page).to have_current_path(root_path)
+      expect(page.evaluate_script('window.navigationMarker')).to be(true)
       expect_theme('light', saved: 'light')
       if layout == :mobile
         expect(find('button[aria-controls="main-navbar"]')['aria-expanded']).to eq('true')
         expect(page).to have_css('#main-navbar', visible: :visible)
       end
+      find('[data-theme-toggle]').click
+      expect(page.evaluate_script('window.navigationMarker')).to be(true)
+      expect_theme('dark', saved: 'dark')
+      find('[data-theme-toggle]').click
+      expect(page.evaluate_script('window.navigationMarker')).to be(true)
+      expect_theme('light', saved: 'light')
     end
   end
 end
