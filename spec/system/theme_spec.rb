@@ -39,6 +39,18 @@ RSpec.describe 'Page theme', :js do
     page.evaluate_script("getComputedStyle(document.querySelector(#{selector.to_json})).getPropertyValue(#{property.to_json})")
   end
 
+  def expect_completed_turbo_visit(path)
+    page.execute_script(<<~JS)
+      document.documentElement.dataset.turboVisitComplete = 'false'
+      document.addEventListener('turbo:load', () => {
+        document.documentElement.dataset.turboVisitComplete = 'true'
+      }, { once: true })
+    JS
+    yield
+    expect(page).to have_css('html[data-turbo-visit-complete="true"]')
+    expect(page).to have_current_path(path)
+  end
+
   def expect_colors(theme)
     shades = theme == 'dark' ? %w[800 900 300 700] : %w[white 100 600 200]
     selectors = [['body', 'background-color'], ['nav', 'background-color'], ['main small', 'color'], ['footer hr', 'background-color']]
@@ -146,16 +158,14 @@ RSpec.describe 'Page theme', :js do
         expect(page).to have_link('Hello World', visible: :visible)
       end
 
-      click_link 'Hello World'
-      expect(page).to have_current_path(hello_world_path)
+      expect_completed_turbo_visit(hello_world_path) { click_link 'Hello World' }
       expect(page.evaluate_script('window.navigationMarker')).to be(true)
       expect_theme('light', saved: 'light')
       if layout == :mobile
         expect(find('button[aria-controls="main-navbar"]')['aria-expanded']).to eq('false')
         expect(page).to have_no_css('#main-navbar', visible: :visible)
       end
-      click_link t('app_name')
-      expect(page).to have_current_path(root_path)
+      expect_completed_turbo_visit(root_path) { click_link t('app_name') }
       expect(page.evaluate_script('window.navigationMarker')).to be(true)
       expect_theme('light', saved: 'light')
       expect_colors('light')
@@ -164,8 +174,7 @@ RSpec.describe 'Page theme', :js do
         find('button[aria-controls="main-navbar"]').click
         expect(page).to have_css('#main-navbar', visible: :visible)
       end
-      click_link 'Hello World'
-      expect(page).to have_current_path(hello_world_path)
+      expect_completed_turbo_visit(hello_world_path) { click_link 'Hello World' }
       expect(page.evaluate_script('window.navigationMarker')).to be(true)
       expect_theme('light', saved: 'light')
       find('[data-theme-toggle]').click
@@ -173,8 +182,7 @@ RSpec.describe 'Page theme', :js do
       emulate_os_theme('light')
       expect_theme('dark', saved: 'dark')
 
-      click_link t('app_name')
-      expect(page).to have_current_path(root_path)
+      expect_completed_turbo_visit(root_path) { click_link t('app_name') }
       expect(page.evaluate_script('window.navigationMarker')).to be(true)
       expect_theme('dark', saved: 'dark')
       expect_colors('dark')
@@ -184,10 +192,8 @@ RSpec.describe 'Page theme', :js do
         find('button[aria-controls="main-navbar"]').click
         expect(page).to have_css('#main-navbar', visible: :visible)
       end
-      click_link 'Hello World'
-      expect(page).to have_current_path(hello_world_path)
-      page.go_back
-      expect(page).to have_current_path(root_path)
+      expect_completed_turbo_visit(hello_world_path) { click_link 'Hello World' }
+      expect_completed_turbo_visit(root_path) { page.go_back }
       expect(page.evaluate_script('window.navigationMarker')).to be(true)
       expect_theme('dark', saved: 'dark')
       if layout == :mobile
@@ -215,15 +221,13 @@ RSpec.describe 'Page theme', :js do
       page.execute_script('window.navigationMarker = true')
 
       find('button[aria-controls="main-navbar"]').click if layout == :mobile
-      click_link 'Hello World'
-      expect(page).to have_current_path(hello_world_path)
+      expect_completed_turbo_visit(hello_world_path) { click_link 'Hello World' }
       expect_theme('light', saved: 'light')
       if layout == :mobile
         expect(find('button[aria-controls="main-navbar"]')['aria-expanded']).to eq('false')
         expect(page).to have_no_css('#main-navbar', visible: :visible)
       end
-      page.go_back
-      expect(page).to have_current_path(root_path)
+      expect_completed_turbo_visit(root_path) { page.go_back }
       expect(page.evaluate_script('window.navigationMarker')).to be(true)
       expect_theme('light', saved: 'light')
       if layout == :mobile
