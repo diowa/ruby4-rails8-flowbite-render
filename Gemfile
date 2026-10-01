@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org', cooldown: 5
 
-gem 'rails', '8.1.3.1'
+gem 'rails', '8.1.4'
 
 gem 'bootsnap', require: false
 gem 'iconmap-rails'
