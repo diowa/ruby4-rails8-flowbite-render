@@ -9,7 +9,7 @@ gem 'iconmap-rails'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'kamal', require: false
-gem 'pg', '~> 1.6'
+gem 'pg', '~> 1.7'
 gem 'propshaft'
 gem 'puma'
 gem 'solid_cable'
