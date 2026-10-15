@@ -15,7 +15,7 @@
     "@stylistic/stylelint-plugin": "^5.3.1",
     "oxlint": "^1.86.0",
     "stylelint": "^17.16.0",
-    "stylelint-order": "^8.1.1"
+    "stylelint-order": "^8.1.2"
   },
   "browserslist": [
     "chrome >= 111",
