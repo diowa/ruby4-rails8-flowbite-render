@@ -1,0 +1,10 @@
+<% content_for :title, @post.title %>
+
+<article>
+  <h1><%= @post.title %></h1>
+  <ul aria-label="Tags">
+    <% @post.tags.each do |post_tag| %>
+      <li><%= post_tag %></li>
+    <% end %>
+  </ul>
+</article>
