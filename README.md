@@ -37,3 +37,27 @@ This is an opinionated starter web application based on the following technology
 Starter App is deployable on [Render](https://render.com/). Demo: https://ruby4-rails8-flowbite-render-app.onrender.com/
 
 ```Gemfile``` also contains a set of useful gems for performance, security, api building...
+
+## Reproducing CI and lint checks locally
+
+The commands below come from [`.github/workflows/ci.yml`](.github/workflows/ci.yml) and [`.github/workflows/lint.yml`](.github/workflows/lint.yml).
+
+Preparation commands:
+
+```sh
+bundle exec rails db:prepare
+pnpm install
+pnpm install @csstools/stylelint-formatter-github
+```
+
+Checks:
+
+```sh
+bundle exec rake spec
+bundle exec rubocop --format github
+bundle exec i18n-tasks health
+pnpm lint
+pnpm stylelint app/**/*.{scss,css} --custom-formatter @csstools/stylelint-formatter-github
+```
+
+CI runs the database preparation and specs with `RAILS_ENV=test` and a PostgreSQL connection configured through `DATABASE_URL`.
