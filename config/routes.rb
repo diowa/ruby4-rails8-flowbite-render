@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   # root "posts#index"
   root 'pages#home'
   get :hello_world, to: 'pages#hello_world'
+  resources :posts, only: %i[index show], param: :slug
 end
