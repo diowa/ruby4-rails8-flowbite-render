@@ -1,20 +1,31 @@
 <nav class="bg-gray-100 dark:bg-gray-900">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3">
     <%= link_to root_path, class: "flex items-center space-x-3 rtl:space-x-reverse" do %>
-      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"><%= t('app_name') %></span>
+      <span class="self-center text-lg sm:text-2xl font-semibold whitespace-nowrap dark:text-white"><%= t('app_name') %></span>
     <%- end %>
-    <button data-collapse-toggle="main-navbar" type="button" class="inline-flex items-center w-8 h-8 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="main-navbar" aria-expanded="false">
-      <span class="sr-only"><%= t('.toggle_navigation') %></span>
-      <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-      </svg>
-    </button>
-    <div class="hidden w-full md:block md:w-auto" id="main-navbar">
+    <div class="order-last hidden w-full md:order-none md:block md:w-auto" id="main-navbar">
       <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-gray-100 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
         <li>
           <%= link_to 'Hello World', hello_world_path, class: "block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" %>
         </li>
       </ul>
+    </div>
+    <div class="flex items-center gap-2">
+      <button type="button" data-theme-toggle aria-label="Switch to dark theme" aria-pressed="false" class="inline-flex items-center justify-center w-9 h-9 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
+        <svg class="w-5 h-5 dark:hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.985 12.486A9 9 0 0 1 11.514 3.015a9 9 0 1 0 9.471 9.471Z"/>
+        </svg>
+        <svg class="hidden w-5 h-5 dark:block" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+          <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>
+        </svg>
+      </button>
+      <button data-collapse-toggle="main-navbar" type="button" class="inline-flex items-center w-9 h-9 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 dark:text-gray-400 dark:hover:bg-gray-700" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only"><%= t('.toggle_navigation') %></span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+      </button>
     </div>
   </div>
 </nav>
