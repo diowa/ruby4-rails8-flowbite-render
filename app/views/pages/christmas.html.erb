@@ -1,0 +1,27 @@
+<%- page_title t('.title') %>
+
+<section
+  class="my-6 rounded-2xl bg-red-50 px-4 py-8 text-center shadow-sm dark:bg-gray-900 sm:px-8 sm:py-12"
+  aria-labelledby="christmas-title"
+  data-controller="christmas-countdown"
+>
+  <h1 id="christmas-title" class="text-4xl font-bold tracking-tight text-red-900 dark:text-red-200 sm:text-5xl"><%= yield :title %></h1>
+
+  <div id="christmas-countdown" class="mx-auto mt-8 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4" role="timer">
+    <% %i[days hours minutes seconds].each do |unit| %>
+      <div class="min-w-0 rounded-xl bg-white px-2 py-4 shadow dark:bg-gray-800 sm:px-4">
+        <span
+          class="block text-3xl font-bold tabular-nums text-gray-900 dark:text-white sm:text-4xl"
+          data-christmas-countdown-target="<%= unit %>"
+        ><%= unit == :days ? '0' : '00' %></span>
+        <span class="mt-1 block text-sm font-semibold text-gray-700 dark:text-gray-200 sm:text-base"><%= t(".countdown.#{unit}") %></span>
+      </div>
+    <% end %>
+  </div>
+
+  <p
+    class="mx-auto mt-8 max-w-2xl rounded-xl bg-red-100 px-4 py-3 text-lg font-semibold text-red-900 dark:bg-gray-800 dark:text-red-200"
+    data-christmas-countdown-target="greeting"
+    hidden
+  ><%= t('.greeting') %></p>
+</section>
