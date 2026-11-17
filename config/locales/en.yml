@@ -3,6 +3,11 @@ en:
   app_name: Rails 8 Starter App
   meta_description: An opinionated starter application based on Ruby 4.0, Rails 8.1, Tailwind CSS, and Flowbite
   pages:
+    about:
+      description: This is a starter web application using Ruby, Rails, Tailwind CSS, and Flowbite.
+      navbar_brand: Starter App
+      source_code: Source code
+      title: About
     hello_world:
       title: Hello World
   shared:

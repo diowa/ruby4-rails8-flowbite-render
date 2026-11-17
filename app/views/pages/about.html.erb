@@ -1,0 +1,9 @@
+<%- page_title t('.title') %>
+<%- page_meta_description t('.description') %>
+<%- content_for :navbar_brand, t('.navbar_brand') %>
+
+<h1 class="text-5xl font-medium leading-none mb-3"><%= yield :title %></h1>
+<p class="mb-3"><%= t('.description') %></p>
+<p>
+  <%= link_to t('.source_code'), 'https://github.com/diowa/ruby4-rails8-flowbite-render' %>
+</p>
