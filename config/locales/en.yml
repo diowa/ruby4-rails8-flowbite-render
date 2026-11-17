@@ -3,8 +3,17 @@ en:
   app_name: Rails 8 Starter App
   meta_description: An opinionated starter application based on Ruby 4.0, Rails 8.1, Tailwind CSS, and Flowbite
   pages:
+    christmas:
+      countdown:
+        days: Days
+        hours: Hours
+        minutes: Minutes
+        seconds: Seconds
+      greeting: Merry Christmas! May your day be filled with joy.
+      title: Merry Christmas
     hello_world:
       title: Hello World
   shared:
     navbar:
+      christmas: Merry Christmas
       toggle_navigation: Toggle Navigation
